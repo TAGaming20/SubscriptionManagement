@@ -13,3 +13,5 @@ def create_tables():
 def drop_tables():
     from .models import User, Subscription, SubscriptionTier, Platform, Access
     db.drop_all()
+    
+    

@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
-from database import Base
+from database import db
 
-class User(Base):
+class User(db):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, index=True)
@@ -11,7 +11,7 @@ class User(Base):
     subscription = relationship('Subscription', back_populates='users')
     accesses = relationship('Access', back_populates='user')
 
-class Subscription(Base):
+class Subscription(db):
     __tablename__ = 'subscriptions'
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
@@ -20,7 +20,7 @@ class Subscription(Base):
     tiers = relationship('SubscriptionTier', back_populates='subscription')
     users = relationship('User', back_populates='subscription')
 
-class SubscriptionTier(Base):
+class SubscriptionTier(db):
     __tablename__ = 'subscription_tiers'
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
@@ -30,13 +30,13 @@ class SubscriptionTier(Base):
     subscription = relationship('Subscription', back_populates='tiers')
     accesses = relationship('Access', back_populates='tier')
 
-class Platform(Base):
+class Platform(db):
     __tablename__ = 'platforms'
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
     accesses = relationship('Access', back_populates='platform')
 
-class Access(Base):
+class Access(db):
     __tablename__ = 'accesses'
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.id'))
