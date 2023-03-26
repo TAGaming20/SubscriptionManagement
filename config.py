@@ -1,10 +1,12 @@
 import os
+debug = False
+if debug: print("config.py: Config imported.")
 
 class Config:
     DEBUG = False
     TESTING = False
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///subscriptions.db'
+    SECRET_KEY = 'Super Secret Key' # os.environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///C:\Apps\SubscriptionManagement/subscriptions.db'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
     PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET')
